@@ -12,6 +12,7 @@ import util.MyFrame;
 public class PlaneFrame extends MyFrame{
 	Image bg=GameUtil.getImage("images/bg.jpg");
 	Plane p=new Plane("images/plane.png",Constant.PLANE_X,Constant.PLANE_Y);
+	
 	public void paint(Graphics g){
 		g.drawImage(bg, 0, 0, null);
 		p.draw(g);
@@ -28,18 +29,23 @@ public class PlaneFrame extends MyFrame{
 		public void keyPressed(KeyEvent e) {
 			super.keyPressed(e);
 			System.out.println(e.getKeyCode());
-			//38 40 37 39:up down left right
 			switch(e.getKeyCode()){
-			case 38:p.y-=10;break;
-			case 40:p.y+=10;break;
-			case 37:p.x-=10;break;
-			case 39:p.x+=10;break;
+			case KeyEvent.VK_RIGHT:	p.right=true;break;
+			case KeyEvent.VK_LEFT:	p.left=true;break;
+			case KeyEvent.VK_UP:	p.up=true;break;
+			case KeyEvent.VK_DOWN:	p.down=true;break;
 			}
 		}
 
 		@Override
 		public void keyReleased(KeyEvent e) {
 			super.keyReleased(e);
+			switch(e.getKeyCode()){
+			case KeyEvent.VK_RIGHT:	p.right=false;break;
+			case KeyEvent.VK_LEFT:	p.left=false;break;
+			case KeyEvent.VK_UP:	p.up=false;break;
+			case KeyEvent.VK_DOWN:	p.down=false;break;
+			}
 		}
 		
 	}
