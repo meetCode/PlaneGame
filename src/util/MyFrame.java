@@ -9,7 +9,7 @@ public class MyFrame extends Frame{
 	
 	public void lauchFrame(){
 		setSize(Constant.GAME_WIDTH,Constant.GAME_HEIGHT);//TODO 这里为什么不用导入constant包？
-		setLocation(100,100);
+		setLocation(Constant.GAME_Y,Constant.GAME_Y);
 		setVisible(true);
 		
 		new PaintThread().start();//启动线程
