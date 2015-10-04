@@ -29,23 +29,13 @@ public class PlaneFrame extends MyFrame{
 		public void keyPressed(KeyEvent e) {
 			super.keyPressed(e);
 			System.out.println(e.getKeyCode());
-			switch(e.getKeyCode()){
-			case KeyEvent.VK_RIGHT:	p.right=true;break;
-			case KeyEvent.VK_LEFT:	p.left=true;break;
-			case KeyEvent.VK_UP:	p.up=true;break;
-			case KeyEvent.VK_DOWN:	p.down=true;break;
-			}
+			p.direction(e.getKeyCode(),true);
 		}
 
 		@Override
 		public void keyReleased(KeyEvent e) {
 			super.keyReleased(e);
-			switch(e.getKeyCode()){
-			case KeyEvent.VK_RIGHT:	p.right=false;break;
-			case KeyEvent.VK_LEFT:	p.left=false;break;
-			case KeyEvent.VK_UP:	p.up=false;break;
-			case KeyEvent.VK_DOWN:	p.down=false;break;
-			}
+			p.direction(e.getKeyCode(),false);
 		}
 		
 	}
