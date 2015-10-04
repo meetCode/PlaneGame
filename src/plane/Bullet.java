@@ -2,12 +2,13 @@ package plane;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import util.Constant;
 
 public class Bullet {
 	double x,y;
-	int speed=3;
+	double speed=2.5;
 	double degree;
 	int width=10;int height=10;
 	public Bullet(){
@@ -15,11 +16,15 @@ public class Bullet {
 		x = Constant.GAME_WIDTH/2;
 		y = Constant.GAME_WIDTH/2;
 	}
+	//获取矩形
+	public Rectangle getRec(){
+		return new Rectangle((int)x,(int)y,width,height);
+	}
+	//画
 	public void draw(Graphics g){
 		Color c=g.getColor();
 		g.setColor(Color.yellow);
 		g.fillOval((int)x, (int)y, width, height);
-		System.out.println("1");
 		//move bullet
 		x+=speed*Math.cos(degree);
 		y+=speed*Math.sin(degree);
@@ -30,6 +35,6 @@ public class Bullet {
 		if(x<0||x>Constant.GAME_WIDTH-width){
 			degree = Math.PI-degree;
 		}
-		g.setColor(c);
+		g.setColor(c);//颜色还原
 	}
 }

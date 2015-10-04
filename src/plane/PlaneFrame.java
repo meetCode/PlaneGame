@@ -20,6 +20,10 @@ public class PlaneFrame extends MyFrame{
 		for(int i=0;i<bulletlist.size();i++){
 			Bullet b=(Bullet)bulletlist.get(i);
 			b.draw(g);
+			//检测跟飞机碰撞
+			boolean collision = b.getRec().intersects(p.getRec());
+			if(collision) 
+				System.out.println("###############peng");
 		}
 	}
 	@Override
@@ -30,6 +34,7 @@ public class PlaneFrame extends MyFrame{
 			Bullet b=new Bullet();
 			bulletlist.add(b);
 		}
+		
 	}
 	//定义为内部类，可以方便的使用外部类的普通属性
 	class KeyMonitor extends KeyAdapter{

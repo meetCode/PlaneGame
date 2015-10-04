@@ -2,6 +2,7 @@ package plane;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 
@@ -11,10 +12,12 @@ public class Plane {
 	Image img;
 	boolean up,down,left,right;
 	int speed=10;
-	/**
-	 * draw the plane
-	 * @param g
-	 */
+	int width,height;
+	//»ñÈ¡¾ØÐÎ
+	public Rectangle getRec(){
+		Rectangle r=new Rectangle((int)x,(int)y,width,height);
+		return r;
+	}
 	public void draw(Graphics g){
 		g.drawImage(img, (int)x, (int)y, null);
 		move();
@@ -41,5 +44,7 @@ public class Plane {
 		this.y=y;
 	}
 	public Plane(){
+		width=img.getWidth(null);
+		height=img.getHeight(null);
 	}
 }
