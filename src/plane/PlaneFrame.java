@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Date;
 
 import util.Constant;
 import util.GameUtil;
@@ -16,6 +17,9 @@ public class PlaneFrame extends MyFrame{
 	Image bg=GameUtil.getImage("images/bg.jpg");
 	Plane p=new Plane("images/plane.png",Constant.PLANE_X,Constant.PLANE_Y);
 	ArrayList bulletlist=new ArrayList();
+	
+	Date startTime;
+	Date endTime;
 	
 	public void paint(Graphics g){
 		g.drawImage(bg, 0, 0, null);
@@ -28,18 +32,20 @@ public class PlaneFrame extends MyFrame{
 			//System.out.println(collision);
 			if(collision) {
 				p.Setlive(false);//飞机死掉
-				
+				endTime=new Date();
 			}
 			//死亡打印信息
 			if(!p.isLive()){
-				printInfo(g,"GAME OVER",40,Constant.GAME_WIDTH/2,Constant.GAME_WIDTH/2);
+				printInfo(g,"GAME OVER",Color.red,40,Constant.GAME_WIDTH/2,Constant.GAME_WIDTH/2);
+				long period=(endTime.getTime()-startTime.getTime())/1000;//毫秒为单位
+				printInfo(g,"time:"+period,Color.white,7,50,90);
 			}
 		}
 	}
-	//打印信息
-	public void printInfo(Graphics g,String str,int size,int x,int y){
+	//打印信息函数
+	public void printInfo(Graphics g,String str,Color co,int size,int x,int y){
 		Color c=g.getColor();
-		g.setColor(Color.red);
+		g.setColor(co);
 		Font f = new Font("宋体",Font.BOLD,50);
 		g.setFont(f);
 		g.drawString(str, x, y);
@@ -49,10 +55,13 @@ public class PlaneFrame extends MyFrame{
 	public void lauchFrame(){
 		super.lauchFrame();
 		addKeyListener(new KeyMonitor());
+		//生成子弹
 		for(int i=0;i<50;i++){
 			Bullet b=new Bullet();
 			bulletlist.add(b);
 		}
+		//计时
+		startTime=new Date();
 		
 	}
 	//定义为内部类，可以方便的使用外部类的普通属性
