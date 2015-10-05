@@ -15,6 +15,7 @@ public class Plane {
 	int width,height;
 	//»ñÈ¡¾ØÐÎ
 	public Rectangle getRec(){
+		
 		Rectangle r=new Rectangle((int)x,(int)y,width,height);
 		return r;
 	}
@@ -24,10 +25,10 @@ public class Plane {
 	}
 	public void move(){
 		//38 40 37 39:up down left right
-		if(left) x-=speed;
-		if(right) x+=speed;
-		if(up)   y-=speed;
-		if(down) y+=speed;
+		if(left) 	x-=speed;
+		if(right)	x+=speed;
+		if(up)   	y-=speed;
+		if(down) 	y+=speed;
 		
 	}
 	public void direction(int e,boolean add){
@@ -40,11 +41,12 @@ public class Plane {
 	}
 	public Plane(String path,double x,double y){
 		this.img=util.GameUtil.getImage(path);
+		width=img.getWidth(null);
+		height=img.getHeight(null);
 		this.x=x;
 		this.y=y;
 	}
 	public Plane(){
-		width=img.getWidth(null);
-		height=img.getHeight(null);
+		System.out.println("1");
 	}
 }

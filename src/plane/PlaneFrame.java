@@ -22,6 +22,7 @@ public class PlaneFrame extends MyFrame{
 			b.draw(g);
 			//¼ì²â¸ú·É»úÅö×²
 			boolean collision = b.getRec().intersects(p.getRec());
+			//System.out.println(collision);
 			if(collision) 
 				System.out.println("###############peng");
 		}
