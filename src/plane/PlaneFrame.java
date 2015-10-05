@@ -17,6 +17,7 @@ public class PlaneFrame extends MyFrame{
 	Image bg=GameUtil.getImage("images/bg.jpg");
 	Plane p=new Plane("images/plane.png",Constant.PLANE_X,Constant.PLANE_Y);
 	ArrayList bulletlist=new ArrayList();
+	Explode bb;
 	
 	Date startTime;
 	Date endTime;
@@ -24,15 +25,23 @@ public class PlaneFrame extends MyFrame{
 	public void paint(Graphics g){
 		g.drawImage(bg, 0, 0, null);
 		p.draw(g);
+		
 		for(int i=0;i<bulletlist.size();i++){
 			Bullet b=(Bullet)bulletlist.get(i);
 			b.draw(g);
+			
+			
 			//¼ì²â¸ú·É»úÅö×²
 			boolean collision = b.getRec().intersects(p.getRec());//ÅÐ¶ÏÖØºÏ
 			//System.out.println(collision);
 			if(collision) {
 				p.Setlive(false);//·É»úËÀµô
 				endTime=new Date();
+				if(bb==null){
+					bb=new Explode(p.x,p.y);
+				}
+				bb.draw(g);
+				break;
 			}
 			//ËÀÍö´òÓ¡ÐÅÏ¢
 			if(!p.isLive()){
