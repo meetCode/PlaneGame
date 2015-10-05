@@ -1,27 +1,19 @@
 package plane;
 
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 
 
-public class Plane {
-	double x,y;
-	Image img;
+public class Plane extends GameObject{
 	boolean up,down,left,right;
-	int speed=10;
-	int width,height;
-	//获取矩形
-	public Rectangle getRec(){
-		
-		Rectangle r=new Rectangle((int)x,(int)y,width,height);
-		return r;
-	}
+	boolean live=true;
 	public void draw(Graphics g){
-		g.drawImage(img, (int)x, (int)y, null);
-		move();
+		if(live){
+			g.drawImage(img, (int)x, (int)y, null);
+			move();
+		}
+		
 	}
 	public void move(){
 		//38 40 37 39:up down left right
@@ -39,7 +31,7 @@ public class Plane {
 		case KeyEvent.VK_DOWN:	down=add;break;
 		}
 	}
-	public Plane(String path,double x,double y){
+	public Plane(String path,double x,double y){//TODO 为什么这里依赖GameObject的空构造器
 		this.img=util.GameUtil.getImage(path);
 		width=img.getWidth(null);
 		height=img.getHeight(null);
@@ -49,4 +41,11 @@ public class Plane {
 	public Plane(){
 		System.out.println("1");
 	}
+	public boolean isLive(){
+		return live;
+	}
+	public void Setlive(boolean live){
+		this.live=live;
+	}
+	
 }

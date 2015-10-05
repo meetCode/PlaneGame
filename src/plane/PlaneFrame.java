@@ -1,5 +1,7 @@
 package plane;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
@@ -14,6 +16,7 @@ public class PlaneFrame extends MyFrame{
 	Image bg=GameUtil.getImage("images/bg.jpg");
 	Plane p=new Plane("images/plane.png",Constant.PLANE_X,Constant.PLANE_Y);
 	ArrayList bulletlist=new ArrayList();
+	
 	public void paint(Graphics g){
 		g.drawImage(bg, 0, 0, null);
 		p.draw(g);
@@ -21,11 +24,26 @@ public class PlaneFrame extends MyFrame{
 			Bullet b=(Bullet)bulletlist.get(i);
 			b.draw(g);
 			//检测跟飞机碰撞
-			boolean collision = b.getRec().intersects(p.getRec());
+			boolean collision = b.getRec().intersects(p.getRec());//判断重合
 			//System.out.println(collision);
-			if(collision) 
-				System.out.println("###############peng");
+			if(collision) {
+				p.Setlive(false);//飞机死掉
+				
+			}
+			//死亡打印信息
+			if(!p.isLive()){
+				printInfo(g,"GAME OVER",40,Constant.GAME_WIDTH/2,Constant.GAME_WIDTH/2);
+			}
 		}
+	}
+	//打印信息
+	public void printInfo(Graphics g,String str,int size,int x,int y){
+		Color c=g.getColor();
+		g.setColor(Color.red);
+		Font f = new Font("宋体",Font.BOLD,50);
+		g.setFont(f);
+		g.drawString(str, x, y);
+		g.setColor(c);
 	}
 	@Override
 	public void lauchFrame(){
