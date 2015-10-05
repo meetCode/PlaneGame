@@ -36,8 +36,9 @@ public class PlaneFrame extends MyFrame{
 			//System.out.println(collision);
 			if(collision) {
 				p.Setlive(false);//·É»úËÀµô
-				endTime=new Date();
+				
 				if(bb==null){
+					endTime=new Date();
 					bb=new Explode(p.x,p.y);
 				}
 				bb.draw(g);

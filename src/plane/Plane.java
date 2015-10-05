@@ -32,6 +32,7 @@ public class Plane extends GameObject{
 		}
 	}
 	public Plane(String path,double x,double y){//TODO 为什么这里依赖GameObject的空构造器
+		this.speed=10;
 		this.img=util.GameUtil.getImage(path);
 		width=img.getWidth(null);
 		height=img.getHeight(null);
@@ -39,7 +40,7 @@ public class Plane extends GameObject{
 		this.y=y;
 	}
 	public Plane(){
-		System.out.println("1");
+		
 	}
 	public boolean isLive(){
 		return live;
